@@ -12,6 +12,19 @@ class VoterMessage:
         self.SSN = SSN
 
 
+# Have a class representing a candidate and their votes
+class Candidate:
+    def __init__(self, name):
+        self.name = name
+        self.vote_count = 1 # default value
+
+    def __str__(self):
+        return f"{self.name}: {self.vote_count} votes"
+
+    def tallyVote(self):
+        self.vote_count += 1
+
+
 # Ask voter to enter name, valid_no, and vote
 print("What is your name?")
 name = input()
@@ -63,12 +76,46 @@ f.close()
 
 # CTF adds the voter's SSN to the tally of one candidate
 # Create a new file, votes.txt, with the voter's candidate, SSN added as a line
-f = open("votes.txt", "a")
-f.write(f"{message.vote},{message.SSN}\n")
+if matchFound:
+    f = open("votes.txt", "a")
+    f.write(f"{message.vote},{message.SSN}\n")
 
 f.close()
 
 # After all votes have been received, the CTF publishes the outcome
+# Tally up all the votes for each candidate in votes.txt
+
+# Have an empty list of Candidate objects
+# Each Candidate will have a name and vote_count
+candidates = []
+
+# Open votes.txt
+f = open("votes.txt", "r")
+for line in f:
+    currentLine = line.split(",")
+    # Store the candidate's name
+    nameOfCandidate = currentLine[0]
+
+    # If the candidate is in the list, simply increment the vote count
+    #    of that candidate
+    candidateIsInList = False
+    for candidate in candidates:
+        if candidate.name == nameOfCandidate:
+            candidate.tallyVote()
+            candidateIsInList = True
+            break
+
+    # If the candidate is not in the list, add them with a default vote count of 1
+    if not candidateIsInList:
+        candidates.append(Candidate(nameOfCandidate))
+
+
+# Print out the tally of votes
+for candidate in candidates:
+    print(candidate)
+
+
+
 
 
 
