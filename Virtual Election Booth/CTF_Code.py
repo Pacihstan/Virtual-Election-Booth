@@ -114,6 +114,8 @@ for line in f:
 for candidate in candidates:
     print(candidate)
 
+# FIXME: Count actual voters out of registered votes (and print turnout percent?)
+
 
 
 
