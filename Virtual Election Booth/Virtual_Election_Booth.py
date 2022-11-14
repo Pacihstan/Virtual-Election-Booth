@@ -1,10 +1,12 @@
+# ***** CLA: Central Legitimization Agency functionality *****
+
 # Import CLA file
 from CLA import CLA
 
-# Initialize isPollOpen to True
-isPollOpen = True
+# Initialize isRegistrationOpen to True
+isRegistrationOpen = True
 
-while isPollOpen:
+while isRegistrationOpen:
     # Ask the voter for name
     print("What is your name? ")
     name = input()
@@ -58,7 +60,7 @@ while isPollOpen:
     print("Are there any more voters? (y/n)")
     answer = input()
     if answer == 'n':
-        isPollOpen = False
+        isRegistrationOpen = False
 
     f.close()
 
@@ -67,7 +69,10 @@ while isPollOpen:
     else:
         print("voterfile is still open")
 
-# end of while isPollOpen
+# end of while isRegistrationOpen
+
+# ***** CTF: Central Tabulating Facility functionality *****
+
 
 
 
