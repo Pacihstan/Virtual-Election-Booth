@@ -1,6 +1,9 @@
 import random
 import time
 
+# Print the name of the program for demonstration purposes
+print("Running SocialSecurityRegistration.py\n")
+
 # Ask what is your name
 print("What is your name?")
 name = input()
