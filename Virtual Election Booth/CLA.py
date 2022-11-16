@@ -46,6 +46,23 @@ class CLA:
         f.close()
         return ssnFound
 
+    def IsNotAlreadyAVoter():
+        #Check if there is already a voter with this SSN in the voterfile
+        f = open('voterfile.txt', 'r', encoding="utf-8")
+
+        #Check every line in voterfile
+        ssnFound = False
+        for line in f:
+            #Read line
+            currentLine = line.split(',')
+            storedSSN = currentLine[1]
+            print(storedSSN)
+            if CLA.voterSSN == storedSSN:
+                ssnFound = True
+                break
+        f.close()
+        return ssnFound
+
     def GenerateValNoAndRecord():
         # Generate random validation number
         valid_no = CLA.generate_validation_num()
@@ -55,9 +72,6 @@ class CLA:
         f = open('voterfile.txt', 'a+', encoding="utf-8")
         f.write(f"{CLA.currentName},{CLA.voterSSN},{valid_no}" + "\n")
         f.close()
-
-        # Set voterValidated to true
-        voterValidated = True
 
     def AskIfMoreVoters():
         # Ask for more votes

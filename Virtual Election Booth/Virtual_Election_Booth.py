@@ -14,13 +14,15 @@ print("***** CLA: Central Legitimization Agency *****")
 #while is registrationOpen
 while(isRegistrationOpen):
     currentCLA.GetVoterInformation()
-    if(currentCLA.IS_SSNMatch):
-        currentCLA.GenerateValNoAndRecord()
+    if(currentCLA.IS_SSNMatch()):
+        if not currentCLA.IsNotAlreadyAVoter():
+            currentCLA.GenerateValNoAndRecord()
+        else:
+            print("Voter has already registered...")
     else:
         print("Match not found...\n")
 
-    if not currentCLA.AskIfMoreVoters:
-        isRegistrationOpen = False
+    isRegistrationOpen = currentCLA.AskIfMoreVoters()
 
 print()  # newline
 print("***** CTF: Central Tabulating Facility  *****")
@@ -28,7 +30,7 @@ print("***** CTF: Central Tabulating Facility  *****")
 while(isVotingBoothOpen):
     
     currentCTF.ConstructVoterMessage() #Get Voter Message
-    if (currentCTF.VerifyValidationNumber):
+    if (currentCTF.VerifyValidationNumber()):
         if (not currentCTF.CheckIfValidationNoUsed()):
             currentCTF.MarkValidationNoUsed()
             currentCTF.AddValidVote()
@@ -37,7 +39,7 @@ while(isVotingBoothOpen):
     else:
         continue
 
-    isVotingBoothOpen = CTF.CheckForMoreVoters
+    isVotingBoothOpen = currentCTF.CheckForMoreVoters()
 
 currentCTF.RecordVotes()
 currentCTF.PrintVotes()
