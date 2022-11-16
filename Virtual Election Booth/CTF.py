@@ -137,6 +137,7 @@ class CTF:
             isVotingBoothOpen = False
             print()  # newline
             return False
+        return True
 
     def RecordVotes():
         # ********************************
