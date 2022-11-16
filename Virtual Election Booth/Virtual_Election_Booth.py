@@ -1,3 +1,7 @@
+# ***********************************************************************
+# Make sure to run SocialSecurityRegistration.py FIRST
+#    so that a person can enter their SSN
+# ***********************************************************************
 import random
 import time
 import os
@@ -149,10 +153,10 @@ while isVotingBoothOpen:
             # Match found, quit the loop
             matchFound = True
 
-            # FIXME: Testing matching functionality
-            print(f"Valid_no {storedValidNo} found!")
-            message.bindSSN(currentLine[1])
-            print(f"Voter's SSN is {message.SSN}")
+            # Accept vote
+            print()
+            print("Your vote has been recorded!")
+            print()
 
             break
 
@@ -167,7 +171,7 @@ while isVotingBoothOpen:
             for line in f:
                 currentLine = line.replace('\n', '')
                 if message.valid_no == currentLine:
-                    print("Voter's valid_no found in usednumbers. You cannot vote again.")
+                    print("Our records have shown that you have already voted. You cannot vote twice.")
                     alreadyVoted = True
                     break
             f.close()
@@ -224,6 +228,8 @@ candidates = []
 
 # Count the total number of votes
 totalNumOfVotes = 0
+# Count number of voters registered
+totalNumRegistered = 0
 
 # Open votes.txt
 f = open("votes.txt", "r")
@@ -247,7 +253,29 @@ for line in f:
         candidates.append(Candidate(nameOfCandidate))
         totalNumOfVotes += 1
 
+f.close()
 
 # Print out the tally of votes
+print("*****************************")
+print("      FINAL VOTE TALLY       ")
+print("*****************************")
 for candidate in candidates:
     print(candidate)
+
+
+# Print out number of votes, number registered, and turnout percent
+print()  # newline
+
+# Count the number of registered voters
+f = open("voterfile.txt", "r")
+for line in f:
+    totalNumRegistered += 1
+
+print(f"Number of votes: {totalNumOfVotes}")
+print(f"Number of registered voters: {totalNumRegistered}")
+turnout = ((float(totalNumOfVotes))/totalNumRegistered) * 100
+print(f"Voter turnout: {turnout}%")
+
+
+
+

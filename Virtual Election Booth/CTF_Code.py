@@ -1,3 +1,10 @@
+# *********************************************************************
+# README!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# THIS IS PROTOTYPE CODE! FINAL VERSION IS IMPLEMENTED IN
+#  Virtual_Election_Booth.py
+# ********************************************************************
+
+
 import os
 
 # ***** CTF: Central Tabulating Facility functionality *****
