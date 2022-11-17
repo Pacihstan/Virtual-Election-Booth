@@ -56,7 +56,6 @@ class CLA:
             #Read line
             currentLine = line.split(',')
             storedSSN = currentLine[1]
-            print(storedSSN)
             if CLA.voterSSN == storedSSN:
                 ssnFound = True
                 break

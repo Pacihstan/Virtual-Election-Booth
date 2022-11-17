@@ -89,7 +89,7 @@ class CTF:
 
                 
 
-    def CheckIfValidationNoUsed():   
+    def CheckIfValidationNoUsed():   #add SSN here and check for both
         # Check if the validation number is present in usednumbers.txt when the user
         #   enters their validation number.
         alreadyVoted = False
